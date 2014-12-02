@@ -15,7 +15,8 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'ui.bootstrap'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -32,7 +33,7 @@ angular
                 controller: 'AboutCtrl'
             })
             .when('/alarms', {
-                templateUrl: 'views/alarms.html',
+                templateUrl: '../views/alarms/index.html',
                 controller: 'AlarmsCtrl'
             })
             .otherwise({

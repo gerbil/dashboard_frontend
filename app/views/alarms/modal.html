@@ -1,0 +1,105 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">{{alarmInfo[0].CHECKNAME}}</h3>
+</div>
+
+<div class="modal-body col-lg-12">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Alarm name</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].CHECKNAME}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Alarm desc</label>
+
+            <div class="col-lg-10">
+                <textarea rows="3" class="form-control">{{alarmInfo[0].DESCRIPTION}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Env name</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].ENVNAME}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Current value</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].CURVALUE}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Value limit</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].VALLIMIT}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Status</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].STATUS}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Limit mark</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].LIMITMARK}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">SQL</label>
+
+            <div class="col-lg-10">
+                <textarea rows="6" class="form-control">{{alarmInfo[0].SQLSCRIPT}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Active</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].ACTIVE}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Send to</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].SENDTO}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Alarm type</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].ALARMTYPE}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Start time</label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].START_TIME}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">End time </label>
+
+            <div class="col-lg-10">
+                <textarea rows="1" class="form-control">{{alarmInfo[0].END_TIME}}</textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-danger pull-left" ng-click="deleteAlarm()">Delete</button>
+    <button class="btn btn-success" ng-click="saveAlarm()">Save changes</button>
+    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+</div>
