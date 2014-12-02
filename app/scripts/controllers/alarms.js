@@ -14,11 +14,10 @@ angular.module('dashboardApp')
         return $resource(
             'http://localhost:3000/alarms/:server/:action/:id',
             {server: '@server' },
-            {id: '@id' },
             {
-                'add': {action: 'add'},
-                'delete': {action: 'delete'},
-                'save': {action: 'update'}
+                add: {method: 'POST', params:{action:'add', id: '@id'}},
+                delete: {method: 'POST', params:{action:'delete', id: '@id'}},
+                update: {method: 'POST', params:{action:'update', id: '@id'}}
             }
         );
     })
@@ -33,7 +32,6 @@ angular.module('dashboardApp')
         };
 
         $scope.openModal = function (size, server, id) {
-
             $scope.alarmInfo = Alarms.query({server: server, id: id});
             $scope.id = id;
             $scope.server = server;
@@ -56,12 +54,8 @@ angular.module('dashboardApp')
     // Please note that $modalInstance represents a modal window (instance) dependency.
     // It is not the same as the $modal service used above.
     .controller('ModalInstanceCtrl', function ($scope, $modalInstance, Alarms) {
-
-        $scope.saveAlarm = function () {
-            $scope.saveAlarmResponse = Alarms.save({server: $scope.server, id: $scope.id});
-            console.log($scope.server);
-            console.log($scope.id);
-            console.log($scope.saveAlarmResponse);
+        $scope.saveAlarm = function (alarmInfo) {
+            Alarms.update({server: $scope.server, id: $scope.id, envname: alarmInfo[0].ENVNAME, checkname: alarmInfo[0].CHECKNAME, description: alarmInfo[0].DESCRIPTION, status: alarmInfo[0].STATUS, curvalue: alarmInfo[0].CURVALUE, vallimit: alarmInfo[0].VALLIMIT, limitmark: alarmInfo[0].LIMITMARK, sqlscript: alarmInfo[0].SQLSCRIPT, active: alarmInfo[0].ACTIVE, sendto: alarmInfo[0].SENDTO, alarmtype: alarmInfo[0].ALARMTYPE, starttime: alarmInfo[0].START_TIME, endtime: alarmInfo[0].END_TIME});
         };
 
         $scope.deleteAlarm = function () {
