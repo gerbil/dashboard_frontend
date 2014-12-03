@@ -29,12 +29,12 @@ angular.module('dashboardApp')
         $scope.testAlarms = Alarms.query({server: 'test'});
 
         // Data refresh start
-        var refreshData = function() {
+        var refreshData = function () {
             // Assign to scope within callback to avoid data flickering on screen
-            Alarms.query({server: 'test'}, function(data){
+            Alarms.query({server: 'test'}, function (data) {
                 $scope.testAlarms = data;
             });
-            Alarms.query({server: 'avk6b1'}, function(data){
+            Alarms.query({server: 'avk6b1'}, function (data) {
                 $scope.avk6b1Alarms = data;
             });
         };
@@ -43,7 +43,7 @@ angular.module('dashboardApp')
         var promise = $interval(refreshData, 5000);
 
         // Cancel interval on page changes
-        $scope.$on('$destroy', function(){
+        $scope.$on('$destroy', function () {
             if (angular.isDefined(promise)) {
                 $interval.cancel(promise);
                 promise = undefined;
@@ -78,32 +78,22 @@ angular.module('dashboardApp')
 
     // Please note that $modalInstance represents a modal window (instance) dependency.
     // It is not the same as the $modal service used above.
-    .controller('ModalInstanceCtrl', function ($scope, $modalInstance, Alarms) {
-        $scope.alerts = [];
-
-        $scope.addAlert = function (type, msg) {
-            $scope.alerts.push({type: type, msg: msg});
-        };
-
-        $scope.closeAlert = function (index) {
-            $scope.alerts.splice(index, 1);
-        };
-
+    .controller('ModalInstanceCtrl', function ($scope, $modalInstance, Alarms, toaster) {
         $scope.saveAlarm = function (alarmInfo) {
             Alarms.update({server: $scope.server, id: $scope.id, envname: alarmInfo[0].ENVNAME, checkname: alarmInfo[0].CHECKNAME, description: alarmInfo[0].DESCRIPTION, status: alarmInfo[0].STATUS, curvalue: alarmInfo[0].CURVALUE, vallimit: alarmInfo[0].VALLIMIT, limitmark: alarmInfo[0].LIMITMARK, sqlscript: alarmInfo[0].SQLSCRIPT, active: alarmInfo[0].ACTIVE, sendto: alarmInfo[0].SENDTO, alarmtype: alarmInfo[0].ALARMTYPE, starttime: alarmInfo[0].START_TIME, endtime: alarmInfo[0].END_TIME},
                 function () {
-                    $scope.addAlert('success', 'Updated successfully');
+                    toaster.pop('success', 'Alarm update', 'Updated successfully');
                 }, function (error) {
-                    $scope.addAlert('error', 'Error in update: ' + error);
+                    toaster.pop('success', 'Error in update', error);
                 });
         };
 
         $scope.deleteAlarm = function () {
             Alarms.delete({server: $scope.server, id: $scope.id},
                 function () {
-                    $scope.addAlert('success', 'Deleted successfully');
+                    toaster.pop('success', 'Alarm update', 'Deleted successfully');
                 }, function (error) {
-                    $scope.addAlert('error', 'Error in delete: ' + error);
+                    toaster.pop('success', 'Error in delete', error);
                 });
         };
 
