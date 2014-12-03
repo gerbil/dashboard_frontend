@@ -11,7 +11,7 @@
                             </div>
                             <div class="ibox-content">
                                 <div>
-                                    <table class="table table-hover table-condensed table-responsive">
+                                    <table class="table table-hover table-condensed table-responsive" ng-table="testTable">
                                         <thead>
                                         <tr>
                                             <th>Name</th>
@@ -27,7 +27,7 @@
                                             <td class="text-center"><span class="glyphicon {{alarm.STATUS == 'OK' ? 'glyphicon-ok-circle green' : 'glyphicon-remove-circle red'}} big"></span></td>
                                             <td>
                                                 <div class="progress" title="{{alarm.CURVALUE}}  / {{alarm.VALLIMIT}}">
-                                                    <div class="bar" style="width: {{(alarm.VALLIMIT / 100) * alarm.CURVALUE}}%;"></div>
+                                                    <div class="bar" style="width: {{(alarm.CURVALUE / alarm.VALLIMIT) * 100}}%;"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -61,7 +61,7 @@
                                             <td class="text-center"><span class="glyphicon {{alarm.STATUS == 'OK' ? 'glyphicon-ok-circle green' : 'glyphicon-remove-circle red'}} big"></span></td>
                                             <td>
                                                 <div class="progress" title="{{alarm.CURVALUE}}  / {{alarm.VALLIMIT}}">
-                                                    <div class="bar" style="width: {{(alarm.VALLIMIT / 100) * alarm.CURVALUE}}%;"></div>
+                                                    <div class="bar" style="width: {{(alarm.CURVALUE / alarm.VALLIMIT) * 100}}%;"></div>
                                                 </div>
                                             </td>
                                         </tr>
