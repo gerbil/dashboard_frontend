@@ -1,6 +1,12 @@
+@import url("//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en");
+
 /* BG */
 body {
     background-color: #f2f2f3;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #676a6c;
+    overflow-x: hidden;
 }
 
 /* ALARMS */
@@ -37,8 +43,9 @@ body {
     border-width: 4px 0px 0;
     color: inherit;
     margin-bottom: 0;
-    padding: 14px 15px 7px;
+    padding: 5px 15px 7px 25px;
     height: 48px;
+    text-transform: uppercase;
 }
 
 .ibox-content {

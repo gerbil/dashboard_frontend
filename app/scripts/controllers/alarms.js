@@ -25,37 +25,32 @@ angular.module('dashboardApp')
 
     .controller('AlarmsCtrl', function ($scope, $resource, Alarms, $modal, $interval) {
 
-        Alarms.list({}, function (data) {
-
+        Alarms.list(function (data) {
             // Get all servers from backend
             $scope.serverList = data.servers;
-
-            // Get all alarms server-by-server from the list above
-            function getAlarms(server) {
+            var getAlarmsInfo = function (server) {
                 Alarms.query({server: server}, function (data) {
-                    $scope.serverList[server]  = data;
+                    $scope.serverList[server] = data;
                 });
-            }
-
+            };
             for (var i = 0; i < $scope.serverList.length; i++) {
-                getAlarms($scope.serverList[i]);
+                getAlarmsInfo($scope.serverList[i]);
             }
-
         });
 
-        // Data refresh start
-        var refreshData = function () {
-            // Assign to scope within callback to avoid data flickering on screen
-            Alarms.query({server: 'test'}, function (data) {
-                $scope.testAlarms = data;
-            });
-            Alarms.query({server: 'avk6b1'}, function (data) {
-                $scope.avk6b1Alarms = data;
-            });
-        };
+        function refreshData() {
+            var getAlarmsInfo = function (server) {
+                Alarms.query({server: server}, function (data) {
+                    $scope.serverList[server] = data;
+                });
+            };
+            for (var i = 0; i < $scope.serverList.length; i++) {
+                getAlarmsInfo($scope.serverList[i]);
+            }
+        }
 
         // Promise should be created to be deleted afterwards
-        var promise = $interval(refreshData, 500000);
+        var promise = $interval(refreshData, 5000);
 
         // Cancel interval on page changes
         $scope.$on('$destroy', function () {
