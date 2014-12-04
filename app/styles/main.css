@@ -8,6 +8,11 @@ body {
     margin: 50px;
 }
 
+#alarms table {
+    cursor: pointer;
+}
+
+
 .ibox {
     clear: both;
     margin-bottom: 25px;
@@ -112,4 +117,8 @@ body {
 
 div > select {
     margin-top: 7px;
+}
+
+div > input[type="radio"] {
+    margin-top: 12px;
 }

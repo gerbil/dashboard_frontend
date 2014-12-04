@@ -4,10 +4,11 @@
             <div class="wrapper wrapper-content">
 
                 <div class="row">
-                    <div class="col-lg-6">
+
+                    <div class="col-lg-6" ng-repeat="server in serverList">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>TEST</h5>
+                                <h5>{{server}}</h5>
                             </div>
                             <div class="ibox-content">
                                 <div>
@@ -21,8 +22,8 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr ng-repeat="alarm in testAlarms">
-                                            <td ng-click="openModal('lg', 'test', alarm.ID)">{{alarm.CHECKNAME}}</td>
+                                        <tr ng-repeat="alarm in serverList[server]">
+                                            <td ng-click="openAlarmInfoModal('lg', 'test', alarm.ID)">{{alarm.CHECKNAME}}</td>
                                             <td class="text-center"><span class="glyphicon {{alarm.ACTIVE == 'YES' ? 'glyphicon-ok' : 'glyphicon-remove'}} big"></span></td>
                                             <td class="text-center"><span class="glyphicon {{alarm.STATUS == 'OK' ? 'glyphicon-ok-circle green' : 'glyphicon-remove-circle red'}} big"></span></td>
                                             <td>
@@ -30,6 +31,9 @@
                                                     <div class="bar" style="width: {{(alarm.CURVALUE / alarm.VALLIMIT) * 100}}%;"></div>
                                                 </div>
                                             </td>
+                                        </tr>
+                                        <tr ng-click="openAddAlarmModal('lg','test');">
+                                            <td>Add new alarm</td><td></td><td></td><td class="text-center"><span class="glyphicon glyphicon-plus-sign big"></span></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -38,39 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>AVK6B1</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <div>
-                                    <table class="table table-hover table-condensed table-responsive">
-                                        <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th class="text-center">Active</th>
-                                            <th class="text-center">Status</th>
-                                            <th class="text-center">Limit</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="alarm in avk6b1Alarms">
-                                            <td ng-click="openModal('lg', 'avk6b1', alarm.ID);">{{alarm.CHECKNAME}}</td>
-                                            <td class="text-center"><span class="glyphicon {{alarm.ACTIVE == 'YES' ? 'glyphicon-ok' : 'glyphicon-remove'}} big"></span></td>
-                                            <td class="text-center"><span class="glyphicon {{alarm.STATUS == 'OK' ? 'glyphicon-ok-circle green' : 'glyphicon-remove-circle red'}} big"></span></td>
-                                            <td>
-                                                <div class="progress" title="{{alarm.CURVALUE}}  / {{alarm.VALLIMIT}}">
-                                                    <div class="bar" style="width: {{(alarm.CURVALUE / alarm.VALLIMIT) * 100}}%;"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>
