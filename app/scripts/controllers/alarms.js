@@ -50,7 +50,7 @@ angular.module('dashboardApp')
         }
 
         // Promise should be created to be deleted afterwards
-        var promise = $interval(refreshData, 5000);
+        var promise = $interval(refreshData, 500000);
 
         // Cancel interval on page changes
         $scope.$on('$destroy', function () {
@@ -61,6 +61,7 @@ angular.module('dashboardApp')
         });
         // Data refresh end
 
+        /* Modals */
         $scope.openAlarmInfoModal = function (size, server, id) {
             $scope.showModal = true;
             $scope.alarmInfo = Alarms.query({server: server, id: id});
@@ -70,32 +71,21 @@ angular.module('dashboardApp')
             $modal.open({
                 templateUrl: '../views/alarms/alarmInfo.html',
                 controller: 'ModalInstanceCtrl',
-                size: size,
                 scope: $scope,
-                resolve: {
-                    items: function () {
-                        return $scope.alarmInfo;
-                    }
-                }
-            });
+                size: size
+                });
         };
 
-        $scope.openAddAlarmModal = function (size, server, id) {
+        $scope.openAddAlarmModal = function (size, server) {
             $scope.showModal = true;
-            $scope.alarmInfo = Alarms.query({server: server, id: id});
-            $scope.id = id;
+            $scope.alarmInfo = Alarms.query({server: server});
             $scope.server = server;
 
             $modal.open({
                 templateUrl: '../views/alarms/addAlarm.html',
                 controller: 'ModalInstanceCtrl',
-                size: size,
                 scope: $scope,
-                resolve: {
-                    items: function () {
-                        return $scope.alarmInfo;
-                    }
-                }
+                size: size
             });
         };
 

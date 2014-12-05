@@ -26,11 +26,12 @@
                                             <td class="text-center"><span class="glyphicon {{alarm.STATUS == 'OK' ? 'glyphicon-ok-circle green' : 'glyphicon-remove-circle'}} big"></span></td>
                                             <td>
                                                 <div class="progress" title="{{alarm.CURVALUE}}  / {{alarm.VALLIMIT}}">
-                                                    <div class="bar" style="width: {{(alarm.CURVALUE / alarm.VALLIMIT) * 100}}%;"></div>
+                                                    <div class="bar {{percent > 80 ? 'danger' : ''}}" style="width: {{percent = ((alarm.CURVALUE /
+                                                     alarm.VALLIMIT) * 100)}}%;"></div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr ng-click="openAddAlarmModal('lg',server);">
+                                        <tr ng-click="openAddAlarmModal('lg', server);">
                                             <td>Add new alarm</td><td></td><td></td><td class="text-center"><span class="glyphicon glyphicon-plus-sign big"></span></td>
                                         </tr>
                                         </tbody>
