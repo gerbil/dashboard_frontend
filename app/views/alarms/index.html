@@ -20,13 +20,13 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr ng-repeat="alarm in serverList[server]" class="{{alarm.STATUS == 'ALARM' ? 'achtung' : ''}}">
+                                        <tr ng-repeat="alarm in serverList[server]" class="{{(alarm.STATUS == 'ALARM' && alarm.ACTIVE == 'YES') ? 'achtung' : ''}}">
                                             <td ng-click="openAlarmInfoModal('lg', server, alarm.ID)">{{alarm.CHECKNAME}}</td>
                                             <td class="text-center"><span class="glyphicon {{alarm.ACTIVE == 'YES' ? 'glyphicon-ok' : 'glyphicon-remove'}} big"></span></td>
                                             <td class="text-center"><span class="glyphicon {{alarm.STATUS == 'OK' ? 'glyphicon-ok-circle green' : 'glyphicon-remove-circle'}} big"></span></td>
                                             <td>
                                                 <div class="progress" title="{{alarm.CURVALUE}}  / {{alarm.VALLIMIT}}">
-                                                    <div class="bar {{percent > 80 ? 'danger' : ''}}" style="width: {{percent = ((alarm.CURVALUE /
+                                                    <div class="bar {{(percent > 80 && alarm.ACTIVE == 'YES') ? 'danger' : ''}}" style="width: {{percent = ((alarm.CURVALUE /
                                                      alarm.VALLIMIT) * 100)}}%;"></div>
                                                 </div>
                                             </td>

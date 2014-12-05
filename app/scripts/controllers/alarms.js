@@ -50,7 +50,7 @@ angular.module('dashboardApp')
         }
 
         // Promise should be created to be deleted afterwards
-        var promise = $interval(refreshData, 500000);
+        var promise = $interval(refreshData, 25000);
 
         // Cancel interval on page changes
         $scope.$on('$destroy', function () {
